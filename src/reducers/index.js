@@ -8,11 +8,11 @@ function todoListReducer(state=todoInit ,action) {
             return [...state ,action.data]
         case 'TOGGLE_CHECK':
             let {index} = action
-            state[index].checked = !state[index].checked
-            return [...state]
+            const todoList = [...state]
+            todoList[index].checked = !todoList[index].checked
+            return todoList
         case 'REMOVE':
-            state.splice(action.index ,1)
-            return [...state]
+            return [...state.filter((item,i) => i !== action.index)]
         case 'CLEAR':
             return todoInit
         default:
